@@ -12,7 +12,11 @@ const SPFDial = (context) => {
 	const ringWidth = media.matches ? lowerRingWidth : higherRingWidth;
 
 	return (
-		<div 	ref={ container } className="dial-container">
+		<div
+			ref={ container }
+			className="dial-container"
+
+		>
 			<ReactSpeedometer
 				forceRender={ true }
 				fluidWidth={ true }
@@ -23,7 +27,7 @@ const SPFDial = (context) => {
 				customSegmentLabels={ customLabels }
 				ringWidth={ ringWidth }
 				textColor="#212121"
-				segments={ 8 }
+				segments={ customLabels.length }
 				paddingHorizontal={ paddingForLabel }
 				paddingVertical={ paddingForLabel }
 				labelFontSize="31px"
