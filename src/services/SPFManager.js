@@ -1,19 +1,15 @@
 /* eslint-disable no-magic-numbers */
 
-import { peek } from '@laufire/utils/debug';
-
 const updateLocalMousePos = (context) => {
-	const { dataLocal, setState,
+	const { data, setState,
 		state: { containerProps: { offsetLeft, offsetTop }}} = context;
-
-	peek(offsetLeft);
 
 	setState((prevState) => ({
 		...prevState,
 		localMouse:
 		{
-			x: dataLocal.clientX - offsetLeft,
-			y: dataLocal.clientY - offsetTop,
+			x: data.clientX - offsetLeft,
+			y: data.clientY - offsetTop,
 		},
 	}));
 };
@@ -23,9 +19,9 @@ const calculateMousePosition = (context) => {
 		state: { localMouse,
 			containerProps: { width, height }},
 	} = context;
-
-	const needleOriginX = width / 2;
-	const needleOriginY = height / 2;
+	const half = 0.5;
+	const needleOriginX = width * half;
+	const needleOriginY = height * half;
 	const angleRad = Math.atan2(needleOriginY - localMouse.y,
 		localMouse.x - needleOriginX);
 	const theta = 180 - (angleRad * 180 / Math.PI);

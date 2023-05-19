@@ -32,7 +32,7 @@ const DisplayMeter = (context) => {
 			ref={ container }
 			className="dial-container"
 			onClick={ (event) => SPFManager.updateLocalMousePos({
-				...context, dataLocal: event,
+				...context, data: event,
 			}) }
 		>
 			<SPFDial { ...extendedContext }/>
