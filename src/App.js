@@ -7,7 +7,8 @@ const App = (context) => {
 	const [state, setState] = useState({
 		localMouse: { x: 100, y: 160 },
 		inputText: 0,
-		containerProps: { width: 300, height: 300 },
+		containerProps:
+		{ width: 300, height: 300, offsetLeft: 0, offsetTop: 0 },
 	});
 
 	const extendedContext = { ...context, state, setState };

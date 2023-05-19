@@ -7,35 +7,31 @@ const higherRingWidth = 100;
 // eslint-disable-next-line max-lines-per-function
 const SPFDial = (context) => {
 	const { config: { customLabels, paddingForLabel, maxDialValue },
-		data: container } = context;
+		state: { containerProps }} = context;
 	const media = window.matchMedia('(max-width: 550px)');
 	const ringWidth = media.matches ? lowerRingWidth : higherRingWidth;
+	const two = 2;
 
 	return (
-		<div
-			ref={ container }
-			className="dial-container"
-
-		>
-			<ReactSpeedometer
-				forceRender={ true }
-				fluidWidth={ true }
-				maxValue={ maxDialValue }
-				needleTransitionDuration={ 300 }
-				needleTransition="easeLinear"
-				value={ SPFManager.findNeedlePosition(context) }
-				customSegmentLabels={ customLabels }
-				ringWidth={ ringWidth }
-				textColor="#212121"
-				segments={ customLabels.length }
-				paddingHorizontal={ paddingForLabel }
-				paddingVertical={ paddingForLabel }
-				labelFontSize="31px"
-				valueTextFontSize="37px"
-				valueTextFontWeight="500"
-				currentValueText="SPF"
-			/>
-		</div>
+		<ReactSpeedometer
+			forceRender={ true }
+			width={ containerProps.width - two * paddingForLabel }
+			height={ containerProps.height - two * paddingForLabel }
+			maxValue={ maxDialValue }
+			needleTransitionDuration={ 300 }
+			needleTransition="easeLinear"
+			value={ SPFManager.findNeedlePosition(context) }
+			customSegmentLabels={ customLabels }
+			ringWidth={ ringWidth }
+			textColor="#212121"
+			segments={ customLabels.length }
+			paddingHorizontal={ paddingForLabel }
+			paddingVertical={ paddingForLabel }
+			labelFontSize="31px"
+			valueTextFontSize="37px"
+			valueTextFontWeight="500"
+			currentValueText="SPF"
+		/>
 	);
 };
 
