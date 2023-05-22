@@ -6,6 +6,8 @@ const two = 2;
 const fontValFactor = 17;
 const ringWidthFactor = 6;
 const fontColor = '#212121';
+const valueTextFontWeight = '500';
+const needleTransitionDuration = 300;
 
 const dialStyles = (context) => {
 	const { config:	{ customLabels, paddingForLabel, maxDialValue }} = context;
@@ -16,10 +18,10 @@ const dialStyles = (context) => {
 		paddingHorizontal: paddingForLabel,
 		paddingVertical: paddingForLabel,
 		labelFontSize: '50px',
-		valueTextFontWeight: '500',
+		valueTextFontWeight: valueTextFontWeight,
 		currentValueText: 'SPF',
 		maxValue: maxDialValue,
-		needleTransitionDuration: 300,
+		needleTransitionDuration: needleTransitionDuration,
 		needleTransition: 'easeLinear',
 		customSegmentLabels: customLabels,
 	};

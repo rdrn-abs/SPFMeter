@@ -1,4 +1,6 @@
-/* eslint-disable no-magic-numbers */
+const straightAngle = 180;
+const centum = 100;
+const twoSeventy = 270;
 
 const updateLocalMousePos = (context) => {
 	const { data, setState,
@@ -24,17 +26,17 @@ const calculateMousePosition = (context) => {
 	const needleOriginY = height * half;
 	const angleRad = Math.atan2(needleOriginY - localMouse.y,
 		localMouse.x - needleOriginX);
-	const theta = 180 - (angleRad * 180 / Math.PI);
+	const theta = straightAngle - (angleRad * straightAngle / Math.PI);
 
 	return roundValue(
-		theta, 0, 180, 270
+		theta, 0, straightAngle, twoSeventy
 	);
 };
 
 const findNeedlePosition = (context) => {
 	const { config: { maxDialValue }} = context;
 
-	return calculateMousePosition(context) * maxDialValue / 180;
+	return calculateMousePosition(context) * maxDialValue / straightAngle;
 }
 	;
 
@@ -57,7 +59,7 @@ const roundValue = (
 const findSegment = (context) => {
 	const { config: { spfDictionary }} = context;
 	const mousePosPercent
-		= calculateMousePosition(context) * (100 / 180);
+		= calculateMousePosition(context) * (centum / straightAngle);
 
 	const foundSegment = spfDictionary.find((obj) =>
 		mousePosPercent <= obj.segment);

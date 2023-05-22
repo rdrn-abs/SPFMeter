@@ -15,6 +15,8 @@ const handleResize = (context) => {
 		},
 	}));
 };
+const updateLocalMousePos = (context) => (event) =>
+	SPFManager.updateLocalMousePos({ ...context, data: event });
 
 const DisplayMeter = (context) => {
 	const container = useRef();
@@ -29,11 +31,11 @@ const DisplayMeter = (context) => {
 
 	return (
 		<div
-			ref={ container }
-			className="dial-container"
-			onClick={ (event) => SPFManager.updateLocalMousePos({
-				...context, data: event,
-			}) }
+			{ ...{
+				ref: container,
+				className: 'dial-container',
+				onClick: updateLocalMousePos(context),
+			} }
 		>
 			<SPFDial { ...extendedContext }/>
 		</div>
